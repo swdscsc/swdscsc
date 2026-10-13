@@ -10,7 +10,7 @@
 - **物联网云平台**：华为云 IoT（设备接入 / 属性上报 / 命令下发）、微信小程序联动
 - **测试**：pytest 自动化测试框架、串口日志交叉验证
 - **系统与运维**：Linux（Ubuntu）、Shell 脚本
-- **数据库**：MySQL（JDBC）、SQLite
+- **数据库**：MySQL（JDBC）、SQLite、Oracle PL/SQL（课程学习）
 - **数据与可视化**：pandas
 
 > 说明：以上均为课程 / 项目中有真实实践的内容。Docker、Prometheus 等仅作了解，未系统学习，不列入技术栈。
