@@ -21,6 +21,7 @@
 | 项目 | 说明 |
 | --- | --- |
 | [stm32-esp8266-huaweicloud-iot](https://github.com/swdscsc/stm32-esp8266-huaweicloud-iot) | STM32+ESP8266 AT 指令接入华为云 IoT：MQTT 属性上报 + 小程序订阅 Topic 下发控制，端-云-端四层链路联调（含可运行的 MQTT 接入演示与原理讲解） |
+| [esp32-esp-idf-training](https://github.com/swdscsc/esp32-esp-idf-training) | ESP32 (esp-idf) 实训进阶工程集：8 个由浅入深、均可独立编译运行的工程（hello-world→LED/按键/FreeRTOS/LVGL/QMI8658 姿态/WiFi 联网），体现完整嵌入式学习曲线 |
 | [esp32-attitude-iot-dashboard](https://github.com/swdscsc/esp32-attitude-iot-dashboard) | ESP32-S3 姿态数据 MQTT(QoS1) 上云 + 云端命令控制 LED 双向通信 + Python(pandas) 采集分析 |
 | [esp32-qmi8658-attitude-monitor](https://github.com/swdscsc/esp32-qmi8658-attitude-monitor) | ESP32-S3 + QMI8658 六轴姿态监测：I2C 驱动、姿态解算、LVGL 显示 |
 | [esp32-freertos-task-queue](https://github.com/swdscsc/esp32-freertos-task-queue) | 上述项目的多任务改造：采集/解算/UI 三任务 + 双队列（FreeRTOS） |
