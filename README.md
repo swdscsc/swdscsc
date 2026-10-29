@@ -5,15 +5,18 @@
 
 > 我的主线是「**设备侧开发 + 质量保障**」：既能写 STM32 / ESP32 的驱动与 FreeRTOS 任务，也能给它们搭自动化测试框架。会写 pytest 的人很多，既懂设备又会写测试框架的人不多——我把力气花在这个交叉点上。
 
-## 📊 先看这三个（带量化结果，固定种子可复现）
+## 📊 先看这四个（带量化结果，固定种子可复现）
 
 | 项目 | 做了什么 | 结果 |
 | --- | --- | --- |
+| [device-test-harness](https://github.com/swdscsc/device-test-harness) | 设备侧自动化回归框架：pytest + 串口 AT 协议，三层分离（协议 / 设备 / 客户端），后端可插拔——模拟器零硬件可跑，改一个环境变量切真板子 | **55 条用例全通过**，**协议分支覆盖 15/15**，521 条命令、时延 P50 4.47ms |
 | [test-framework](https://github.com/swdscsc/test-framework) | pytest 分层自动化框架：API 客户端封装 → 数据驱动（parametrize + JSON 场景矩阵）→ 页面级冒烟；自研 HTML 报告插件，导出 JUnit XML 接 CI | **26 条用例 100% 通过**，覆盖 400 / 401 / 404 错误分支 |
 | [defect-detection](https://github.com/swdscsc/defect-detection) | 无需训练的经典 CV 流水线：中值差分 → 形态学 → 轮廓分析，按旋转包围盒判别划痕 / 污点 / 崩角 | **整体 F1 = 0.970**（P=1.0 / R=0.942），正常样本零误报 |
 | [net-sentinel](https://github.com/swdscsc/net-sentinel) | 纯 Python 可解释规则引擎：端口扫描 / SYN 洪水 / 暴力破解 / 数据外泄四类检测 + SVG 告警报告 | 四类攻击 **P / R / F1 均 100%** |
 
-三个项目都满足：`python xxx.py` 一条命令出报告、README 写清设计取舍（为什么不用 Canny、为什么 SYN 洪水要按「目标+端口」聚合）、评测结果可复现。
+四个项目都满足：`python xxx.py` 一条命令出报告、README 写清设计取舍（为什么不用 Canny、为什么 SYN 洪水要按「目标+端口」聚合、为什么设备测试必须做故障注入）、评测结果可复现。
+
+> `device-test-harness` 是我认为最能说明「设备侧 + 质量保障」这个交叉点的项目：接口测试碰不到丢包、串包、半截帧、设备忙，而这些恰恰是固件联调里最常见的问题。它用一个可注入故障的模拟固件把这些场景全部变成可回归的用例。
 
 ## 🔧 技术栈
 
@@ -45,6 +48,7 @@
 ### 测试 / 安全 / 数据
 | 项目 | 说明 |
 | --- | --- |
+| [device-test-harness](https://github.com/swdscsc/device-test-harness) | 设备侧自动化回归测试框架（55 用例 / 分支覆盖 15/15，故障注入 + 时延统计） |
 | [test-framework](https://github.com/swdscsc/test-framework) | pytest 分层自动化测试框架（26 用例 100% 通过，JUnit XML 接 CI） |
 | [net-sentinel](https://github.com/swdscsc/net-sentinel) | 网络入侵检测与可视化（四类攻击 P/R/F1 均 100%） |
 | [defect-detection](https://github.com/swdscsc/defect-detection) | 工业表面缺陷视觉检测（F1 = 0.970） |
